@@ -235,114 +235,132 @@ Validation Layer
 Output + Execution Context
      ↓
 Telemetry / Audit Signals
-
+```
 
 ---
 
-Example Scenarios
+# Example Scenarios
 
-Scenario	Expected Mode
-Simple drafting	FAST
-Architecture planning	DEEP
-Financial or legal prompts	VERIFIED
-Factual trap prompts	VERIFIED
-Multi-step synthesis	DEEP
+| Scenario | Expected Mode |
+|---|---|
+| Simple drafting | FAST |
+| Architecture planning | DEEP |
+| Financial or legal prompts | VERIFIED |
+| Factual trap prompts | VERIFIED |
+| Multi-step synthesis | DEEP |
 
 The demo includes curated scenarios to make execution transitions observable and repeatable.
 
 ---
 
-Deployment Overview
+# Deployment Overview
 
 Sevaq is typically deployed as two services:
-	1.	FastAPI backend (api)
-	2.	Streamlit dashboard (demo)
+
+1. FastAPI backend (`api`)
+2. Streamlit dashboard (`demo`)
 
 For Docker and cloud deployment details, see:
 
-docs/deployment.md
+`docs/deployment.md`
 
 ---
 
-Optional Self-Hosting / Local Development
+# Optional Self-Hosting / Local Development
 
 Local setup is optional if you only want the hosted demo.
 
 ---
 
-Environment Setup (Public Repo Safe)
+# Environment Setup (Public Repo Safe)
 
-Use .env.example as your template and keep secrets in .env only.
+Use `.env.example` as your template and keep secrets in `.env` only.
 
+```bash
 cp .env.example .env
+```
 
-.env is ignored by git and should never be committed publicly.
+`.env` is ignored by git and should never be committed publicly.
 
+---
 
-Install
+# Install
 
+```bash
 python3 -m venv .venv
 source .venv/bin/activate
 
 python -m pip install -r backend/requirements.txt
 python -m pip install -r dashboard/requirements.txt
+```
 
 or:
 
+```bash
 make install
+```
 
+---
 
-Run
+# Run
 
-Backend (mock mode)
+## Backend (mock mode)
 
+```bash
 SEVAQ_DEMO_MODE=mock uvicorn --app-dir backend app.main:app --reload
+```
 
-Backend (live mode)
+## Backend (live mode)
 
+```bash
 SEVAQ_DEMO_MODE=live \
 OPENAI_API_KEY=... \
 SEVAQ_OPENAI_FAST_MODEL=... \
 SEVAQ_OPENAI_DEEP_MODEL=... \
 SEVAQ_OPENAI_VERIFIED_MODEL=... \
 uvicorn --app-dir backend app.main:app --reload
+```
 
-Dashboard
+## Dashboard
 
+```bash
 streamlit run dashboard/streamlit_app.py
-
+```
 
 ---
 
-Optional Runtime Guardrails
+# Optional Runtime Guardrails
 
+```text
 SEVAQ_MAX_PROMPT_CHARS
 SEVAQ_OPENAI_MAX_OUTPUT_TOKENS
 SEVAQ_OPENAI_REQUEST_TIMEOUT_SECONDS
 SEVAQ_OPENAI_DAILY_COST_BUDGET_UNITS
 SEVAQ_OPENAI_GUARDRAIL_FALLBACK_TO_MOCK
-
+```
 
 ---
 
-Tests
+# Tests
 
 Run the full suite:
 
+```bash
 pytest -q tests
+```
 
 or:
 
+```bash
 make test
-
+```
 
 ---
 
-Disclaimer
+# Disclaimer
 
 Sevaq Public is a public-safe demonstration of adaptive reasoning orchestration, execution governance, and operational controls.
 
 It is not legal, medical, immigration, or financial advice.
 
 High-stakes outputs should always be independently verified with qualified experts and trusted primary sources.
-
