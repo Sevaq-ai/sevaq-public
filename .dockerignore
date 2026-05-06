@@ -1,0 +1,14 @@
+.git
+.gitignore
+.venv
+__pycache__
+*.pyc
+*.pyo
+.pytest_cache
+.DS_Store
+node_modules
+dist
+build
+*.db
+*.sqlite
+sevaq_telemetry.db
