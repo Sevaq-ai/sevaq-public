@@ -237,7 +237,7 @@ Output + Execution Context
 Telemetry / Audit Signals
 
 
-⸻
+---
 
 Example Scenarios
 
@@ -250,7 +250,7 @@ Multi-step synthesis	DEEP
 
 The demo includes curated scenarios to make execution transitions observable and repeatable.
 
-⸻
+---
 
 Deployment Overview
 
@@ -262,13 +262,13 @@ For Docker and cloud deployment details, see:
 
 docs/deployment.md
 
-⸻
+---
 
 Optional Self-Hosting / Local Development
 
 Local setup is optional if you only want the hosted demo.
 
-⸻
+---
 
 Environment Setup (Public Repo Safe)
 
@@ -278,7 +278,6 @@ cp .env.example .env
 
 .env is ignored by git and should never be committed publicly.
 
-⸻
 
 Install
 
@@ -292,8 +291,6 @@ or:
 
 make install
 
-
-⸻
 
 Run
 
@@ -315,7 +312,7 @@ Dashboard
 streamlit run dashboard/streamlit_app.py
 
 
-⸻
+---
 
 Optional Runtime Guardrails
 
@@ -326,7 +323,7 @@ SEVAQ_OPENAI_DAILY_COST_BUDGET_UNITS
 SEVAQ_OPENAI_GUARDRAIL_FALLBACK_TO_MOCK
 
 
-⸻
+---
 
 Tests
 
@@ -339,7 +336,7 @@ or:
 make test
 
 
-⸻
+---
 
 Disclaimer
 
