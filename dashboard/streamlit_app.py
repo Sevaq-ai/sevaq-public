@@ -337,6 +337,128 @@ def _style() -> None:
             background: {BRAND["surface"]};
             box-shadow: {BRAND["shadow"]};
         }}
+        .eval-kicker {{
+            color: {BRAND["teal"]};
+            font-size: 0.92rem;
+            font-weight: 700;
+            letter-spacing: 0.01em;
+            margin-top: 1.2rem;
+            margin-bottom: 0.2rem;
+        }}
+        .eval-intro {{
+            border: 1px solid {BRAND["border"]};
+            border-radius: 0.95rem;
+            background: {BRAND["surface"]};
+            box-shadow: {BRAND["shadow"]};
+            padding: 0.95rem 1rem;
+            margin-bottom: 0.65rem;
+        }}
+        .eval-highlight-card {{
+            border: 1px solid {BRAND["border"]};
+            border-left: 4px solid {BRAND["teal"]};
+            border-radius: 0.85rem;
+            padding: 0.85rem 0.9rem;
+            margin: 0.4rem 0;
+            background: {BRAND["surface"]};
+            min-height: 148px;
+        }}
+        .eval-highlight-title {{
+            color: {BRAND["navy"]};
+            font-size: 0.96rem;
+            font-weight: 700;
+            margin-bottom: 0.24rem;
+        }}
+        .eval-highlight-copy {{
+            color: {BRAND["text_muted"]};
+            font-size: 0.9rem;
+            line-height: 1.4;
+        }}
+        .latency-tier {{
+            border: 1px solid {BRAND["border"]};
+            border-radius: 0.75rem;
+            padding: 0.65rem 0.75rem;
+            margin-bottom: 0.45rem;
+            background: {BRAND["surface"]};
+        }}
+        .latency-row {{
+            display: flex;
+            justify-content: space-between;
+            gap: 0.6rem;
+            font-size: 0.9rem;
+            color: {BRAND["navy"]};
+            font-weight: 600;
+            margin-bottom: 0.4rem;
+        }}
+        .latency-track {{
+            background: #E9F1F8;
+            border-radius: 999px;
+            height: 10px;
+            overflow: hidden;
+        }}
+        .latency-fill {{
+            height: 100%;
+            border-radius: 999px;
+            background: linear-gradient(90deg, {BRAND["cyan"]} 0%, {BRAND["teal"]} 100%);
+        }}
+        .proxy-pill {{
+            border: 1px solid {BRAND["border"]};
+            border-radius: 999px;
+            padding: 0.4rem 0.72rem;
+            font-size: 0.84rem;
+            color: {BRAND["navy"]};
+            background: {BRAND["surface"]};
+            margin: 0.18rem 0.16rem 0.18rem 0;
+            display: inline-block;
+            white-space: nowrap;
+        }}
+        .flow-shell {{
+            border: 1px solid {BRAND["border"]};
+            border-radius: 0.95rem;
+            background: {BRAND["surface"]};
+            box-shadow: {BRAND["shadow"]};
+            padding: 0.95rem;
+            margin-top: 0.35rem;
+            margin-bottom: 0.5rem;
+        }}
+        .flow-node {{
+            border: 1px solid {BRAND["border"]};
+            border-radius: 0.72rem;
+            background: #F8FBFE;
+            color: {BRAND["navy"]};
+            font-weight: 600;
+            padding: 0.55rem 0.65rem;
+            margin: 0.2rem 0;
+            text-align: center;
+        }}
+        .flow-arrow {{
+            text-align: center;
+            color: {BRAND["text_muted"]};
+            font-size: 0.95rem;
+            margin: 0.08rem 0;
+        }}
+        .flow-branch-wrap {{
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.42rem;
+            justify-content: center;
+            margin: 0.24rem 0 0.18rem 0;
+        }}
+        .flow-branch {{
+            border: 1px solid {BRAND["border"]};
+            border-radius: 999px;
+            background: #F1F8FC;
+            color: {BRAND["teal"]};
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 0.32rem 0.6rem;
+        }}
+        .eval-disclaimer {{
+            color: {BRAND["text_muted"]};
+            font-size: 0.82rem;
+            border-top: 1px solid {BRAND["border"]};
+            padding-top: 0.6rem;
+            margin-top: 0.55rem;
+        }}
         [data-testid="stMetric"] {{
             background: {BRAND["surface"]};
             border: 1px solid {BRAND["border"]};
@@ -1121,6 +1243,114 @@ def _founder_demo_page() -> None:
             + "</div>",
             unsafe_allow_html=True,
         )
+
+    st.markdown("<div class='eval-kicker'>Not all prompts should be handled the same.</div>", unsafe_allow_html=True)
+    st.subheader("Adaptive Execution Evaluations")
+    st.markdown(
+        "<div class='eval-intro'>"
+        "SevaQ dynamically adjusts reasoning depth, confidence posture, and compute allocation based on prompt complexity, ambiguity, and risk - from lightweight queries to higher-stakes scenarios.<br/><br/>"
+        "SevaQ evaluates execution posture before response generation, allowing the system to adapt reasoning behavior prior to producing an answer."
+        "</div>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("#### Evaluation Highlights")
+    highlight_cards = [
+        (
+            "A",
+            "100% Routing Alignment",
+            "Prompts were consistently assigned to the appropriate execution mode: quick response, deep analysis, or high-confidence review.",
+        ),
+        (
+            "B",
+            "44% High-Confidence Escalation",
+            "Ambiguous and higher-risk inputs triggered a more deliberate, caution-oriented reasoning path.",
+        ),
+        (
+            "C",
+            "Grounding-Risk Detection",
+            "All factual-trap scenarios triggered elevated uncertainty and external grounding guidance.",
+        ),
+        (
+            "D",
+            "Confidence Signals",
+            "Every evaluation run returned uncertainty indicators, grounding risk, and confidence guidance signals.",
+        ),
+        (
+            "E",
+            "0% Provider Fallback",
+            "All scenarios completed within SevaQ's orchestration layer without execution fallback.",
+        ),
+    ]
+    cols = st.columns(2)
+    for idx, (label, title, copy) in enumerate(highlight_cards):
+        cols[idx % 2].markdown(
+            "<div class='eval-highlight-card'>"
+            + f"<div class='eval-highlight-title'>{label}) {title}</div>"
+            + f"<div class='eval-highlight-copy'>{copy}</div>"
+            + "</div>",
+            unsafe_allow_html=True,
+        )
+
+    st.markdown("#### Adaptive Latency Allocation")
+    latency_col, narrative_col = st.columns([1.2, 1])
+    latency_tiers = [
+        ("Quick Response", "~100-200 ms", 28),
+        ("Deep Analysis", "~400-600 ms", 62),
+        ("High Confidence", "~700-1000 ms", 96),
+    ]
+    for tier, timing, width in latency_tiers:
+        latency_col.markdown(
+            "<div class='latency-tier'>"
+            + f"<div class='latency-row'><span>{tier}</span><span>{timing}</span></div>"
+            + "<div class='latency-track'>"
+            + f"<div class='latency-fill' style='width:{width}%;'></div>"
+            + "</div></div>",
+            unsafe_allow_html=True,
+        )
+    narrative_col.markdown(
+        "<div class='card'><b>Adaptive Compute Allocation</b><br/>"
+        "SevaQ keeps lightweight prompts fast while allocating additional reasoning depth and caution posture to more complex or sensitive scenarios."
+        "</div>",
+        unsafe_allow_html=True,
+    )
+
+    st.markdown("#### Grounding Risk Proxy Layer")
+    st.markdown(
+        "<span class='proxy-pill'>external grounding or sources</span>"
+        "<span class='proxy-pill'>explicit uncertainty signaling</span>"
+        "<span class='proxy-pill'>caution-oriented response construction</span>"
+        "<span class='proxy-pill'>elevated reasoning posture</span>",
+        unsafe_allow_html=True,
+    )
+    st.caption(
+        "This enables the system to adjust execution strategy before generating a response rather than reacting after the fact."
+    )
+
+    st.markdown("#### Execution Flow")
+    st.markdown(
+        "<div class='flow-shell'>"
+        "<div class='flow-node'>Prompt</div>"
+        "<div class='flow-arrow'>&#8595;</div>"
+        "<div class='flow-node'>Risk / Ambiguity Assessment</div>"
+        "<div class='flow-arrow'>&#8595;</div>"
+        "<div class='flow-node'>Adaptive Execution Layer</div>"
+        "<div class='flow-branch-wrap'>"
+        "<span class='flow-branch'>Quick Response</span>"
+        "<span class='flow-branch'>Deep Analysis</span>"
+        "<span class='flow-branch'>High Confidence</span>"
+        "</div>"
+        "<div class='flow-arrow'>&#8595;</div>"
+        "<div class='flow-node'>Confidence Signals + Response</div>"
+        "</div>",
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        "<div class='eval-disclaimer'>"
+        "Evaluations measure orchestration behavior, routing decisions, and confidence signaling. They do not represent guaranteed factual correctness."
+        "</div>",
+        unsafe_allow_html=True,
+    )
 
 
 def main() -> None:
